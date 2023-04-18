@@ -1,10 +1,12 @@
 import { Routes, Route, NavLink } from 'react-router-dom';
 import styled from 'styled-components';
-import Home from 'page/Home';
-import MovieDetails from 'page/MovieDetails';
-import Movies from 'page/Movies';
-import Cast from './Cast/Cast';
-import Reviews from './Reviews/Reviews';
+import { lazy } from 'react';
+
+const Home = lazy(() => import('page/Home'));
+const MovieDetails = lazy(() => import('page/MovieDetails'));
+const Movies = lazy(() => import('page/Movies'));
+const Cast = lazy(() => import('./Cast/Cast'));
+const Reviews = lazy(() => import('./Reviews/Reviews'));
 
 const StyledLink = styled(NavLink)`
   color: black;

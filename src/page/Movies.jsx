@@ -1,6 +1,5 @@
 import MovieList from 'components/MovieList/MovieList';
 import SearchBar from 'components/SearchBar/SearchBar';
-import { Outlet } from 'react-router-dom';
 
 import { useState, useEffect } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
@@ -52,7 +51,6 @@ const Movies = () => {
       <SearchBar onSubmit={handleSubmit} onChange={handleInputChange} />
       <MovieList films={resultMovieList} />
       {isLoading && <Loader />}
-      {/* <Outlet /> */}
       <ToastContainer position="top-right" autoClose={3000} theme="colored" />
     </>
   );

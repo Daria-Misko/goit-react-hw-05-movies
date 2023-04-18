@@ -12,15 +12,21 @@ const getPopularMovies = async () => {
 const getSearchMovie = async query => {
   const apiConfig = `${URL}/search/movie?api_key=${KEY}&query=${query}&page=1`;
   const response = await axios.get(apiConfig);
-  console.log(response.data);
   return response.data;
 };
 
 const getMovieDetails = async movieId => {
   const apiConfig = `${URL}/movie/${movieId}?api_key=${KEY}`;
   const response = await axios.get(apiConfig);
-  console.log(response.data);
+  // console.log(response.data);
   return response.data;
 };
 
-export { getPopularMovies, getSearchMovie, getMovieDetails };
+const getMovieCast = async movieId => {
+  const apiConfig = `${URL}/movie/${movieId}/credits?api_key=${KEY}`;
+  const { data } = await axios.get(apiConfig);
+  // console.log(data.cast);
+  return data.cast;
+};
+
+export { getPopularMovies, getSearchMovie, getMovieDetails, getMovieCast };
