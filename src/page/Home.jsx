@@ -1,9 +1,11 @@
 import MovieList from 'components/MovieList/MovieList';
 import { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import { getPopularMovies } from 'services/fatchApi';
 
 const Home = () => {
   const [films, setFilms] = useState([]);
+  const location = useLocation();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -21,7 +23,7 @@ const Home = () => {
   return (
     <>
       <h2>Trending today</h2>
-      {films.length !== 0 && <MovieList films={films} />}
+      {films.length !== 0 && <MovieList films={films} location={location} />}
     </>
   );
 };

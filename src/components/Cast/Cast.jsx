@@ -31,9 +31,7 @@ const Cast = () => {
     getCast();
   }, [movieId]);
 
-  console.log('hey');
-  console.log(cast);
-  console.log(movieId);
+  // console.log(cast);
 
   return (
     <>

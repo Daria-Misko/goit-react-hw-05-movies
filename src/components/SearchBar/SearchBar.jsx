@@ -6,7 +6,7 @@ import {
   Label,
 } from './SearchBar.styles';
 
-const SearchBar = ({ onSubmit, onChange }) => {
+const SearchBar = ({ onSubmit, onChange, value }) => {
   return (
     <SearchbarWrapper>
       <SearchForm onSubmit={onSubmit}>
@@ -15,7 +15,8 @@ const SearchBar = ({ onSubmit, onChange }) => {
           name="searchQuery"
           autoComplete="off"
           autoFocus={true}
-          placeholder="Search images and photos"
+          placeholder="Search movie"
+          value={value}
           onChange={onChange}
         ></Input>
         <SearchFormButton type="submit">

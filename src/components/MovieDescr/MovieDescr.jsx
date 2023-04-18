@@ -1,9 +1,10 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import noImage from '../img/No_Image.webp';
 
 const MovieDescr = ({ movieDetails }) => {
   const { poster_path, release_date, title, vote_average, overview, genres } =
     movieDetails;
+  const location = useLocation();
 
   const date = new Date(release_date);
   const movieYear = date.getFullYear();
@@ -12,7 +13,6 @@ const MovieDescr = ({ movieDetails }) => {
 
   return (
     <>
-      <Link href="#">Back</Link>
       <div>
         <div>
           <img

@@ -29,4 +29,17 @@ const getMovieCast = async movieId => {
   return data.cast;
 };
 
-export { getPopularMovies, getSearchMovie, getMovieDetails, getMovieCast };
+const getMovieReviews = async movieId => {
+  const apiConfig = `${URL}/movie/${movieId}/reviews?api_key=${KEY}`;
+  const response = await axios.get(apiConfig);
+  // console.log(response);
+  return response.data;
+};
+
+export {
+  getPopularMovies,
+  getSearchMovie,
+  getMovieDetails,
+  getMovieCast,
+  getMovieReviews,
+};

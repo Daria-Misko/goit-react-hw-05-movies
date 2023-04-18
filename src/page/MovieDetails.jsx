@@ -1,5 +1,5 @@
 import { Suspense, useEffect, useState } from 'react';
-import { Outlet, useParams } from 'react-router-dom';
+import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
 import { getMovieDetails } from 'services/fatchApi';
 import { toast } from 'react-toastify';
 import MovieDescr from 'components/MovieDescr/MovieDescr';
@@ -11,6 +11,8 @@ const MovieDetails = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const { movieId } = useParams();
+  const location = useLocation();
+  const backLinkHref = location.state?.from ?? '/';
 
   useEffect(() => {
     if (!movieId) return;
@@ -32,20 +34,27 @@ const MovieDetails = () => {
     getDetails();
   }, [movieId]);
 
-  // console.log(movieDetails);
+  console.log(location);
 
   return (
     <>
+      <Link to={backLinkHref} state={{ from: location }}>
+        Back
+      </Link>
       <div>MovieDetails</div>
       {isLoading && <Loader />}
       {movieDetails && <MovieDescr movieDetails={movieDetails} />}
       <div>
         <ul>
           <li>
-            <ItemLink to="cast">Cast</ItemLink>
+            <ItemLink to="cast" state={{ from: backLinkHref }}>
+              Cast
+            </ItemLink>
           </li>
           <li>
-            <ItemLink to="reviews">Reviews</ItemLink>
+            <ItemLink to="reviews" state={{ from: backLinkHref }}>
+              Reviews
+            </ItemLink>
           </li>
         </ul>
         <Suspense fallback={<div>Loading...</div>}>
