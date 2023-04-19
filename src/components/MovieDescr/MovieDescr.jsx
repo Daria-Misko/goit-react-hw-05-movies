@@ -12,7 +12,6 @@ import {
 const MovieDescr = ({ movieDetails }) => {
   const { poster_path, release_date, title, vote_average, overview, genres } =
     movieDetails;
-
   const date = new Date(release_date);
   const movieYear = date.getFullYear();
   const votePercentage = (vote_average * 10).toFixed(0);
