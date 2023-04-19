@@ -1,21 +1,27 @@
-import { Link, useLocation } from 'react-router-dom';
-import noImage from '../img/No_Image.webp';
+import PropTypes from 'prop-types';
+import noImage from '../img/noImage_two.jpeg';
+
+import {
+  Description,
+  ImgWrapper,
+  MovieWrapper,
+  Poster,
+  Text,
+} from './MovieDescr.styles';
 
 const MovieDescr = ({ movieDetails }) => {
   const { poster_path, release_date, title, vote_average, overview, genres } =
     movieDetails;
-  const location = useLocation();
 
   const date = new Date(release_date);
   const movieYear = date.getFullYear();
-
   const votePercentage = (vote_average * 10).toFixed(0);
 
   return (
     <>
-      <div>
-        <div>
-          <img
+      <MovieWrapper>
+        <ImgWrapper>
+          <Poster
             src={
               poster_path
                 ? `https://image.tmdb.org/t/p/w300${poster_path}`
@@ -23,18 +29,31 @@ const MovieDescr = ({ movieDetails }) => {
             }
             alt={title}
           />
-        </div>
-        <div>
-          <p>{title ? `${title} (${movieYear})` : `Name of movie not found`}</p>
-          <p>User Score: {votePercentage}%</p>
+        </ImgWrapper>
+        <Description>
+          <Text>
+            {title ? `${title} (${movieYear})` : `Name of movie not found`}
+          </Text>
+          <Text>User Score: {votePercentage}%</Text>
           <h2>Overview</h2>
-          <p>{overview}</p>
+          <Text>{overview}</Text>
           <h2>Genres</h2>
-          <p>{genres && genres.map(genre => genre.name).join(', ')}</p>
-        </div>
-      </div>
+          <Text>{genres && genres.map(genre => genre.name).join(', ')}</Text>
+        </Description>
+      </MovieWrapper>
     </>
   );
+};
+
+MovieDescr.propTypes = {
+  films: PropTypes.shape({
+    poster_path: PropTypes.string,
+    release_date: PropTypes.string,
+    title: PropTypes.string,
+    vote_average: PropTypes.number,
+    overview: PropTypes.string,
+    genres: PropTypes.array,
+  }),
 };
 
 export default MovieDescr;

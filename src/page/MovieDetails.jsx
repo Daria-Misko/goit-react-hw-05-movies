@@ -1,13 +1,18 @@
 import { Suspense, useEffect, useState } from 'react';
-import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
+import { Outlet, useLocation, useParams } from 'react-router-dom';
 import { getMovieDetails } from 'services/fatchApi';
 import { toast } from 'react-toastify';
 import MovieDescr from 'components/MovieDescr/MovieDescr';
 import Loader from 'components/Loader/Loader';
-import { ItemLink } from './MovieDetails.styles';
+import {
+  AdditinalList,
+  ItemLink,
+  ItemLinkBack,
+  MoveDitailsContainer,
+} from './MovieDetails.styles';
 
 const MovieDetails = () => {
-  const [movieDetails, setMovieDetails] = useState([]);
+  const [movieDetails, setMovieDetails] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
   const { movieId } = useParams();
@@ -34,18 +39,15 @@ const MovieDetails = () => {
     getDetails();
   }, [movieId]);
 
-  console.log(location);
-
   return (
-    <>
-      <Link to={backLinkHref} state={{ from: location }}>
+    <MoveDitailsContainer>
+      <ItemLinkBack to={backLinkHref} state={{ from: location }}>
         Back
-      </Link>
-      <div>MovieDetails</div>
+      </ItemLinkBack>
       {isLoading && <Loader />}
       {movieDetails && <MovieDescr movieDetails={movieDetails} />}
       <div>
-        <ul>
+        <AdditinalList>
           <li>
             <ItemLink to="cast" state={{ from: backLinkHref }}>
               Cast
@@ -56,12 +58,12 @@ const MovieDetails = () => {
               Reviews
             </ItemLink>
           </li>
-        </ul>
+        </AdditinalList>
         <Suspense fallback={<div>Loading...</div>}>
           <Outlet />
         </Suspense>
       </div>
-    </>
+    </MoveDitailsContainer>
   );
 };
 

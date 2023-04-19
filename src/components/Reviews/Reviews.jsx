@@ -30,21 +30,25 @@ const Reviews = () => {
     getCast();
   }, [movieId]);
 
-  console.log(reviews);
+  // console.log(reviews);
 
   return (
     <div>
       {isLoading && <Loader />}
-      <ul>
-        {reviews.map(({ id, author, content }) => {
-          return (
-            <ReviewItem key={id}>
-              <Author>{author}</Author>
-              <Text>{content}</Text>
-            </ReviewItem>
-          );
-        })}
-      </ul>
+      {reviews.length !== 0 ? (
+        <ul>
+          {reviews.map(({ id, author, content }) => {
+            return (
+              <ReviewItem key={id}>
+                <Author>{author}</Author>
+                <Text>{content}</Text>
+              </ReviewItem>
+            );
+          })}
+        </ul>
+      ) : (
+        <p>Sorry, We don't have any reviews for this movie.</p>
+      )}
     </div>
   );
 };

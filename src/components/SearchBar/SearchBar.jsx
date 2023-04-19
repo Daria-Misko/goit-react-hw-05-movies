@@ -1,3 +1,5 @@
+import PropTypes, { arrayOf } from 'prop-types';
+
 import {
   Searchbar as SearchbarWrapper,
   SearchForm,
@@ -14,7 +16,7 @@ const SearchBar = ({ onSubmit, onChange, value }) => {
           type="text"
           name="searchQuery"
           autoComplete="off"
-          autoFocus={true}
+          autoFocus={false}
           placeholder="Search movie"
           value={value}
           onChange={onChange}
@@ -25,6 +27,12 @@ const SearchBar = ({ onSubmit, onChange, value }) => {
       </SearchForm>
     </SearchbarWrapper>
   );
+};
+
+SearchBar.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+  onChange: PropTypes.func.isRequired,
+  value: PropTypes.string,
 };
 
 export default SearchBar;

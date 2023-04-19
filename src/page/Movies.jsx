@@ -8,6 +8,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { getSearchMovie } from 'services/fatchApi';
 import Loader from 'components/Loader/Loader';
 import { useLocation, useSearchParams } from 'react-router-dom';
+import { HomeTitle } from './Home.styled';
 
 const Movies = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -19,8 +20,6 @@ const Movies = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const nextParams = inputValue !== '' ? { query: inputValue } : {};
-
-  console.log(searchParams.get('query'));
 
   useEffect(() => {
     const query = searchParams.get('query');
@@ -62,7 +61,7 @@ const Movies = () => {
   };
   return (
     <>
-      <h2>Movies</h2>
+      <HomeTitle>Movies</HomeTitle>
       <SearchBar
         onSubmit={handleSubmit}
         onChange={handleInputChange}

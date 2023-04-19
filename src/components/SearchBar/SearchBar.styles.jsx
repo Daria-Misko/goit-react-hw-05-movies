@@ -1,58 +1,49 @@
 import styled from 'styled-components';
 
 const Searchbar = styled.div`
-  top: 0;
-  left: 0;
-  position: sticky;
-  z-index: 1100;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 64px;
-  padding-right: 24px;
-  padding-left: 24px;
-  padding-top: 12px;
-  padding-bottom: 12px;
-  color: #fff;
-  background-color: #3f51b5;
-  box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
-    0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+  padding: 0 25px;
 `;
 
 const SearchForm = styled.form`
   display: flex;
-  align-items: center;
-  width: 100%;
-  max-width: 600px;
-  background-color: #fff;
-  border-radius: 3px;
-  overflow: hidden;
+  flex-direction: row;
+  gap: 1em;
+  width: 700px;
+  height: 50px;
+  max-width: 100%;
+  margin-bottom: 15px;
 `;
 
 const SearchFormButton = styled.button`
-  display: inline-block;
-  width: 48px;
-  height: 48px;
-  border: 0;
-  opacity: 0.6;
-  transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  border: 3px solid var(--brown);
+  background-color: var(--brown);
+  color: var(--cream);
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  width: 30%;
+  justify-content: center;
   cursor: pointer;
-  outline: none;
 
   :hover {
-    opacity: 1;
+    background-color: var(--cream);
+    color: var(--brown);
   }
 `;
 
 const Input = styled.input`
-  display: inline-block;
-  width: 100%;
-  font: inherit;
+  width: 70%;
+  padding: 0 20px;
+  border: 3px solid var(--brown);
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  background-color: var(--cream);
+
+  font-family: 'IBM Plex Mono';
   font-size: 20px;
-  border: none;
-  outline: none;
-  padding-left: 4px;
-  padding-right: 4px;
+  font-weight: bold;
+  letter-spacing: 2px;
 
   ::placeholder {
     font: inherit;
@@ -61,15 +52,10 @@ const Input = styled.input`
 `;
 
 const Label = styled.span`
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  clip-path: inset(50%);
-  border: 0;
+  font-family: 'IBM Plex Mono';
+  font-size: 20px;
+  font-weight: bold;
+  letter-spacing: 2px;
 `;
 
 export { Searchbar, SearchForm, SearchFormButton, Input, Label };

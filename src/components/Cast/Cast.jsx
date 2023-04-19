@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { getMovieCast } from 'services/fatchApi';
 import { toast } from 'react-toastify';
 import Loader from 'components/Loader/Loader';
-import noImage from '../img/No_Image.webp';
+import noImage from '../img/Unknown_person.jpeg';
 import { CastCardItem, CastCardName, CastContainer } from './Cast.styles';
 
 const Cast = () => {
@@ -31,13 +31,11 @@ const Cast = () => {
     getCast();
   }, [movieId]);
 
-  // console.log(cast);
-
   return (
     <>
       {isLoading && <Loader />}
       <CastContainer>
-        {cast &&
+        {cast.length !== 0 ? (
           cast.map(({ character, id, original_name, profile_path }) => {
             return (
               <CastCardItem key={id}>
@@ -51,11 +49,18 @@ const Cast = () => {
                   height="200"
                 />
 
-                <CastCardName>Name: {original_name}</CastCardName>
-                <CastCardName>Character: {character}</CastCardName>
+                <CastCardName>
+                  Name: <span>{original_name}</span>
+                </CastCardName>
+                <CastCardName>
+                  Character: <span>{character}</span>
+                </CastCardName>
               </CastCardItem>
             );
-          })}
+          })
+        ) : (
+          <p>Sorry, We don't have any cast information for this movie.</p>
+        )}
       </CastContainer>
     </>
   );

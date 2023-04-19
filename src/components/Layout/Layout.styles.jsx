@@ -8,18 +8,12 @@ const Container = styled.div`
 `;
 
 const Header = styled.header`
-  /* display: flex; */
-  /* align-items: center;
-  justify-content: center; */
-  /* gap: 12px; */
-  padding: 8px 0;
+  padding: 8px 25px;
   margin-bottom: 15px;
 `;
 const Nav = styled.nav`
   display: flex;
   gap: 12px;
-  /* align-items: center;
-  justify-content: center; */
 `;
 const StyledLink = styled(NavLink)`
   width: 150px;
